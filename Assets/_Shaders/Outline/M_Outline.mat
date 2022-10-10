@@ -60,10 +60,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Offset: 0.56
+    - _Offset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Size: 200
+    - _Size: 20
     m_Colors:
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
