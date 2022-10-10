@@ -6,6 +6,15 @@
             "id": "ebc14a31-cfad-49ad-aa57-07ee45431640",
             "actions": [
                 {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "7dda0735-fb3d-4a3b-b9f4-1b5375bcea8b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Movement",
                     "type": "Value",
                     "id": "7e3c7443-1c8e-4a1e-9b60-0074483b93e0",
@@ -70,6 +79,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ea970d46-729c-49ba-a164-ecae872364b5",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
