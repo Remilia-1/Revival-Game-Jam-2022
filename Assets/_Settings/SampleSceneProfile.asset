@@ -56,7 +56,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.167
+    m_Value: 0.15
 --- !u!114 &-6751818800836417719
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -88,7 +88,7 @@ MonoBehaviour:
   active: 1
   size:
     m_OverrideState: 1
-    m_Value: 300
+    m_Value: 200
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
     m_Value: 200
   Offset:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.56
   Color:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
