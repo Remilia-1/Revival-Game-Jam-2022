@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RopeBridge
+public class Rope
 {
     public struct RopeSegment
     {
@@ -19,24 +19,28 @@ public class RopeBridge
     public Transform EndPoint { get; set; }
 
     public bool IsActive { get; private set; }
+    public float RopeSegLen { get; set; }
 
     private List<RopeSegment> _ropeSegments = new List<RopeSegment>();
-    private float _ropeSegLen = 0.25f;
     private int _segmentsCount = 35;
     private AnimationCurve _weightCurve;
     private Transform[] _ropeBones;
+    private float _groundPlane;
 
 
 
     /// <summary> Initialize a rope with two fixed connections </summary>
-    public void InitRope(Transform startPoint, Transform endPoint, int segmentsCount, float segmentLength)
+    public void InitRope(Transform startPoint, Transform endPoint, int segmentsCount, float segmentLength, float groundPlane)
     {
         StartPoint = startPoint;
         EndPoint = endPoint;
 
         Vector3 ropeStartPoint = StartPoint.position;
+
         _segmentsCount = segmentsCount;
-        _ropeSegLen = segmentLength;
+        RopeSegLen = segmentLength;
+        _groundPlane = groundPlane;
+
         for (int i = 0; i < segmentsCount; i++)
         {
             _ropeSegments.Add(new RopeSegment(ropeStartPoint));
@@ -52,7 +56,7 @@ public class RopeBridge
 
         Vector3 ropeStartPoint = StartPoint.position;
         _segmentsCount = segmentsCount;
-        _ropeSegLen = segmentLength;
+        RopeSegLen = segmentLength;
 
         for (int i = 0; i < segmentsCount; i++)
         {
@@ -112,7 +116,6 @@ public class RopeBridge
         firstSegment.PosNow = StartPoint.position;
         _ropeSegments[0] = firstSegment;
 
-
         //Constrant to Second Point 
         if(EndPoint != null)
         {
@@ -127,19 +130,20 @@ public class RopeBridge
             RopeSegment secondSeg = _ropeSegments[i + 1];
 
             float dist = (firstSeg.PosNow - secondSeg.PosNow).magnitude;
-            float error = Mathf.Abs(dist - _ropeSegLen);
+            float error = Mathf.Abs(dist - RopeSegLen);
             Vector3 changeDir = Vector3.zero;
 
-            if (dist > _ropeSegLen)
+            if (dist > RopeSegLen)
             {
                 changeDir = (firstSeg.PosNow - secondSeg.PosNow).normalized;
             }
-            else if (dist < _ropeSegLen)
+            else if (dist < RopeSegLen)
             {
                 changeDir = (secondSeg.PosNow - firstSeg.PosNow).normalized;
             }
 
             Vector3 changeAmount = changeDir * error;
+
             if (i != 0)
             {
                 if(_ropeBones != null && i < _ropeBones.Length)
@@ -147,22 +151,32 @@ public class RopeBridge
                     float boneWeight = _weightCurve.Evaluate((float)i / _ropeBones.Length);
                     Vector3 position = Vector3.Lerp(firstSeg.PosNow + -changeAmount * 0.5f, _ropeBones[i].position, boneWeight);
 
+                    position.y = Mathf.Clamp(position.y, _groundPlane, float.MaxValue);
+
                     firstSeg.PosNow = position;
-                    _ropeSegments[i] = firstSeg;
                     secondSeg.PosNow += changeAmount * 0.5f;
+                    secondSeg.PosNow.y = Mathf.Clamp(secondSeg.PosNow.y, _groundPlane, float.MaxValue);
+
+                    _ropeSegments[i] = firstSeg;
                     _ropeSegments[i + 1] = secondSeg;
                 }
                 else
                 {
                     firstSeg.PosNow -= changeAmount * 0.5f;
-                    _ropeSegments[i] = firstSeg;
                     secondSeg.PosNow += changeAmount * 0.5f;
+
+                    firstSeg.PosNow.y = Mathf.Clamp(firstSeg.PosNow.y, _groundPlane, float.MaxValue);
+                    secondSeg.PosNow.y = Mathf.Clamp(secondSeg.PosNow.y, _groundPlane, float.MaxValue);
+
+                    _ropeSegments[i] = firstSeg;
                     _ropeSegments[i + 1] = secondSeg;
                 }
             }
             else
             {
                 secondSeg.PosNow += changeAmount;
+                secondSeg.PosNow.y = Mathf.Clamp(secondSeg.PosNow.y, _groundPlane, float.MaxValue);
+
                 _ropeSegments[i + 1] = secondSeg;
             }
         }
