@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1878332245247344467
+--- !u!114 &-6233184951302538771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,20 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
-  m_Name: SSAO
+  m_Script: {fileID: 11500000, guid: bf3569021e0d901479ad02abe85e28c4, type: 3}
+  m_Name: OutlineFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  m_Shader: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
-  m_Settings:
-    Downsample: 0
-    AfterOpaque: 0
-    Source: 1
-    NormalSamples: 1
-    Intensity: 0.5
-    DirectLightingStrength: 0.25
-    Radius: 0.25
-    SampleCount: 12
+  m_CharactersMask:
+    serializedVersion: 2
+    m_Bits: 192
+  m_OccluderMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_TargetMaterial: {fileID: 2100000, guid: 31e61ed4e9b0c55449928e219d96cff7, type: 2}
+  m_OutlineWriteMaterial: {fileID: 2100000, guid: 2d437f7a3023152438d73c5276c783bf,
+    type: 2}
+  m_OutlineOccludeMaterial: {fileID: 2100000, guid: 16626da7900a1cd4aae1f5b6b97a9457,
+    type: 2}
+  m_OutlineWritePassEvent: 300
+  m_OutlinePostProcessPassEvent: 550
+  m_QueueType: 0
+  m_PerObjectData: 0
+  m_ShaderTags:
+  - SRPDefaultUnlit
+  - UniversalForward
+  - UniversalForwardOnly
+  - LightweightForward
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,11 +49,11 @@ MonoBehaviour:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7,
       type: 3}
   m_RendererFeatures:
-  - {fileID: -1878332245247344467}
-  m_RendererFeatureMap: adc0de57c6d2eee5
+  - {fileID: 6976285623708903168}
+  - {fileID: -6233184951302538771}
+  m_RendererFeatureMap: 0067d514d0bed060ed394dc64f477fa9
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
-  xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
     copyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
@@ -80,3 +90,16 @@ MonoBehaviour:
   m_ClusteredRendering: 0
   m_TileSize: 32
   m_IntermediateTextureMode: 1
+--- !u!114 &6976285623708903168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea10cb5634d8f254f936b29b4078d42b, type: 3}
+  m_Name: CustomPostProcessFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
