@@ -50,20 +50,9 @@ public class Rope
     }
 
     /// <summary> Initialize a rope with one open end </summary>
-    public void InitRope(Transform startPoint, int segmentsCount, float segmentLength)
+    public void InitRope(Transform startPoint, int segmentsCount, float segmentLength, float groundPlane)
     {
-        StartPoint = startPoint;
-
-        Vector3 ropeStartPoint = StartPoint.position;
-        _segmentsCount = segmentsCount;
-        RopeSegLen = segmentLength;
-
-        for (int i = 0; i < segmentsCount; i++)
-        {
-            _ropeSegments.Add(new RopeSegment(ropeStartPoint));
-        }
-
-        IsActive = true;
+        InitRope(startPoint, null, segmentsCount, segmentLength, groundPlane);
     }
 
     /// <summary> For using with clothes (not present in this project) </summary>
@@ -71,8 +60,6 @@ public class Rope
     {
         _ropeBones = bones;
         _weightCurve = curve;    
-    /// <summary> Simulate externally every frame</summary>
-    /// <summary> Use this with a LineRenderer to draw rope</summary>
     }
 
     /// <summary> Simulate externally every frame</summary>

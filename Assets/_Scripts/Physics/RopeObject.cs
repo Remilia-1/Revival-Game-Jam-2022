@@ -14,6 +14,8 @@ public class RopeObject : MonoBehaviour
 
     [SerializeField] private float _initialGroundPlane;
 
+    [SerializeField] private bool _connectBothPoints = true;
+
     private Rope _rope;
 
 
@@ -21,14 +23,20 @@ public class RopeObject : MonoBehaviour
     public void SetGroundPlane(float groundPlane)
     {
         _rope = new Rope();
-        _rope.InitRope(_attachTransformA, _attachTransformB, _segmentCount, _segmentLengthMin, groundPlane);
+        if(_connectBothPoints)
+            _rope.InitRope(_attachTransformA, _attachTransformB, _segmentCount, _segmentLengthMin, groundPlane);
+        else 
+            _rope.InitRope(_attachTransformA, _segmentCount, _segmentLengthMin, groundPlane);
     }
 
     [ContextMenu("REINIT")]
     private void Awake()
     {
         _rope = new Rope();
-        _rope.InitRope(_attachTransformA, _attachTransformB, _segmentCount, _segmentLengthMin, _initialGroundPlane);
+        if (_connectBothPoints)
+            _rope.InitRope(_attachTransformA, _attachTransformB, _segmentCount, _segmentLengthMin, _initialGroundPlane);
+        else
+            _rope.InitRope(_attachTransformA, _segmentCount, _segmentLengthMin, _initialGroundPlane);
 
         _ropeRenderer.positionCount = _segmentCount;
     }
@@ -49,6 +57,9 @@ public class RopeObject : MonoBehaviour
 
     private void UpdateSegmentLength()
     {
+        if (_attachTransformB == null)
+            return;
+
         var dist = Vector3.Distance(_attachTransformA.position, _attachTransformB.position);
         var dMult = dist * _segmentLengthByDistance;
 

@@ -54,9 +54,9 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ShadowRemapPow: 1.25
+    - _ShadowRemapPow: 0
     m_Colors:
-    - _Detail_B: {r: 0.43454075, g: 0.5023039, b: 0.5943396, a: 0}
+    - _Detail_B: {r: 1.1812088, g: 2.297397, b: 2.2167268, a: 0}
     - _Detail_G: {r: 0.33962262, g: 0.30598074, b: 0.30598074, a: 0}
     - _Detail_R: {r: 0.20754719, g: 0.15583745, b: 0.13412248, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
