@@ -30,7 +30,7 @@ public class FloorIndicator : MonoBehaviour
     {
         Ray ray = mainCamera.ScreenPointToRay(mousePositionInput);
 
-        if (Physics.Raycast(ray, out RaycastHit hitData, groundLayer))
+        if (Physics.Raycast(ray, out RaycastHit hitData, 100f, groundLayer))
             worldPositionHit = hitData.point;
 
         indicatorOffset.LookAt(worldPositionHit, Vector3.up);
