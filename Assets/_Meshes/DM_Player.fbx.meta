@@ -2,7 +2,37 @@ fileFormatVersion: 2
 guid: fe682d809edc90846ad04c169f04d51c
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -6671804537420826605
+    second: armature_character|armature_characterAction
+  - first:
+      74: -2126646516140334231
+    second: armature_character|IK_Hand_RAction
+  - first:
+      74: -8344477238838373378
+    second: armature_character|IK_Leg_LAction
+  - first:
+      74: -2520512795187849186
+    second: armature_character|IK_Leg_LAction.001
+  - first:
+      74: 5037038188074808006
+    second: armature_character|IK_Leg_RAction
+  - first:
+      74: 7972405294052221630
+    second: armature_character|IK_Leg_RAction.001
+  - first:
+      74: 4490414542225039915
+    second: armature_character|Pole_Leg_LAction
+  - first:
+      74: 1482989909383331572
+    second: armature_character|Pole_Leg_RAction
+  - first:
+      74: 1139553408851355183
+    second: Anim_Run
+  - first:
+      74: 1125262853868821404
+    second: Anim_Idle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -31,7 +61,65 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Anim_Run
+      takeName: armature_character|Anim_Run
+      internalID: 0
+      firstFrame: 50
+      lastFrame: 61
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Anim_Idle
+      takeName: armature_character|Anim_Run
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -97,7 +185,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
