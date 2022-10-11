@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerCombat : CombatUnit
 {
+    [Header("General References")]
     [SerializeField] private Transform attacksForwardSource;
     [SerializeField] private Transform attackOrigin;
+    [SerializeField] private Animator playerAnimator;
 
     [Header("Melee Attack")]
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private FlatConeCollider meleeAttackCollider;
     [Space]
     [SerializeField] private uint meleeDamage;
-    [SerializeField] private int meleeCDInMilliseconds;
+    [SerializeField] private int meleeCDMsec;
     private bool meleeOnCD = false;
 
     [Header("Misc")]
@@ -45,9 +47,11 @@ public class PlayerCombat : CombatUnit
             return;
 
         meleeOnCD = true;
+
+        playerAnimator.Play("Anim_Slash", 1);
         MeleeApplyDamage(meleeDamage, meleeAttackCollider, enemyLayer);
 
-        await Task.Delay(meleeCDInMilliseconds);
+        await Task.Delay(meleeCDMsec);
         meleeOnCD = false;
     }
 

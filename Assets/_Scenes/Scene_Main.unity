@@ -867,6 +867,12 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2117984561}
+--- !u!95 &884784496 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1333538926430837690, guid: 27ff8645279d8f346bc744ab4bcf4ad5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6106952274394730244}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &929415963
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +978,7 @@ MonoBehaviour:
   maxHealth: 100
   attacksForwardSource: {fileID: 1693373009}
   attackOrigin: {fileID: 929415964}
+  playerAnimator: {fileID: 884784496}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -981,7 +988,8 @@ MonoBehaviour:
     rayLength: 3.6
     rayHeightOffset: 0.5
   meleeDamage: 10
-  meleeCDInMilliseconds: 360
+  meleeAnimToDmgBufferMsec: 0
+  meleeCDMsec: 350
   drawGizmos: 0
 --- !u!1 &1043314753
 GameObject:
