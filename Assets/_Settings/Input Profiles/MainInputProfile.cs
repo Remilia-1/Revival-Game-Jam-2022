@@ -44,6 +44,15 @@ public partial class @MainInputProfile : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AttackMelee"",
+                    ""type"": ""Button"",
+                    ""id"": ""d325b2fc-7f1d-4b00-be08-abba1d06ccb7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @MainInputProfile : IInputActionCollection2, IDisposable
                     ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb70e237-0ed7-4508-a38b-7742898b612d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackMelee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +142,7 @@ public partial class @MainInputProfile : IInputActionCollection2, IDisposable
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_MousePosition = m_Main.FindAction("MousePosition", throwIfNotFound: true);
         m_Main_Movement = m_Main.FindAction("Movement", throwIfNotFound: true);
+        m_Main_AttackMelee = m_Main.FindAction("AttackMelee", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,12 +204,14 @@ public partial class @MainInputProfile : IInputActionCollection2, IDisposable
     private IMainActions m_MainActionsCallbackInterface;
     private readonly InputAction m_Main_MousePosition;
     private readonly InputAction m_Main_Movement;
+    private readonly InputAction m_Main_AttackMelee;
     public struct MainActions
     {
         private @MainInputProfile m_Wrapper;
         public MainActions(@MainInputProfile wrapper) { m_Wrapper = wrapper; }
         public InputAction @MousePosition => m_Wrapper.m_Main_MousePosition;
         public InputAction @Movement => m_Wrapper.m_Main_Movement;
+        public InputAction @AttackMelee => m_Wrapper.m_Main_AttackMelee;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -204,6 +227,9 @@ public partial class @MainInputProfile : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
+                @AttackMelee.started -= m_Wrapper.m_MainActionsCallbackInterface.OnAttackMelee;
+                @AttackMelee.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnAttackMelee;
+                @AttackMelee.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnAttackMelee;
             }
             m_Wrapper.m_MainActionsCallbackInterface = instance;
             if (instance != null)
@@ -214,6 +240,9 @@ public partial class @MainInputProfile : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @AttackMelee.started += instance.OnAttackMelee;
+                @AttackMelee.performed += instance.OnAttackMelee;
+                @AttackMelee.canceled += instance.OnAttackMelee;
             }
         }
     }
@@ -222,5 +251,6 @@ public partial class @MainInputProfile : IInputActionCollection2, IDisposable
     {
         void OnMousePosition(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnAttackMelee(InputAction.CallbackContext context);
     }
 }

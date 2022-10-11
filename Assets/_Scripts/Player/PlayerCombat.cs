@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCombat : CombatUnit
@@ -6,9 +8,9 @@ public class PlayerCombat : CombatUnit
 
     [Header("Melee Attack")]
     [SerializeField] private Transform meleeAttackOrigin;
+    [Space]
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private uint meleeDamage;
-    [Space]
     [SerializeField] private FlatConeCollider meleeAttackCollider;
 
     [Header("Misc")]
@@ -24,17 +26,23 @@ public class PlayerCombat : CombatUnit
         public float rayHeightOffset;
     }
 
-    private void Update()
+    // Inputs
+    MainInputProfile inputs;
+
+    private void Start()
     {
-        
+        inputs = new MainInputProfile();
+        inputs.Enable();
+
+        inputs.Main.AttackMelee.performed += ctx => MeleeAttack();
     }
 
     private void MeleeAttack()
     {
-        
+        MeleeApplyDamage(meleeDamage, meleeAttackCollider, enemyLayer);
     }
 
-    private void MeleeApplyDamage(uint damage, FlatConeCollider collider)
+    private void MeleeApplyDamage(uint damage, FlatConeCollider collider, LayerMask enemyLayer)
     {
         Vector3 heightOffset = Vector3.up * collider.rayHeightOffset;
 
@@ -44,11 +52,28 @@ public class PlayerCombat : CombatUnit
         float angleIncrements = collider.angle / collider.rayCount;
         float startAngle = -(collider.angle / 2) + (angleIncrements / 2);
 
+        // List of unit already hit by that cast
+        List<CombatUnit> unitsHit = new List<CombatUnit> { };
+
         for (int i = 0; i < collider.rayCount; i++)
         {
             if(Physics.Linecast(rayStartPos + heightOffset, rayStartPos + Quaternion.Euler(0, startAngle + angleIncrements * i, 0) * (target + heightOffset), out RaycastHit hitInfo, enemyLayer))
                 if(hitInfo.collider.TryGetComponent(out CombatUnit combatUnit))
-                    combatUnit.Damage(damage);
+                {
+                    bool unitAlreadyHit = false;
+
+                    // Check if the unit was already hit by another ray
+                    foreach(CombatUnit unit in unitsHit)
+                        if(unit == combatUnit)
+                            unitAlreadyHit = true;
+
+                    // Only damage if it wasnt already hit
+                    if (!unitAlreadyHit)
+                    {
+                        unitsHit.Add(combatUnit);
+                        combatUnit.Damage(damage);
+                    }
+                }
         }
     }
 
