@@ -8,8 +8,6 @@ public class OutlineWritePass : ScriptableRenderPass
 {
     private RenderPassEvent m_TargetPass = RenderPassEvent.AfterRenderingOpaques;
 
-    private Material m_OverrideWriteMaterial;
-    private Material m_OverrideOccludeMaterial;
     private FilteringSettings m_FilteringSettings;
     private FilteringSettings m_OccluderSettings;
     private RenderStateBlock m_RenderStateBlock;
@@ -24,13 +22,9 @@ public class OutlineWritePass : ScriptableRenderPass
     public OutlineWritePass(
         LayerMask charactersMask, 
         LayerMask occluderMask,
-        Material targetMaterial, 
-        Material occludeMaterial,
         RenderPassEvent targetPass)
     {
         this.m_TargetPass = targetPass;
-        this.m_OverrideWriteMaterial = targetMaterial;
-        this.m_OverrideOccludeMaterial = occludeMaterial;
 
         m_FilteringSettings = new FilteringSettings(RenderQueueRange.opaque, charactersMask);
         m_OccluderSettings = new FilteringSettings(RenderQueueRange.opaque, occluderMask);
@@ -73,10 +67,10 @@ public class OutlineWritePass : ScriptableRenderPass
             cmd.Clear();
 
             DrawingSettings drawSettings = CreateDrawingSettings(m_ShaderTagIdList, ref renderingData, renderingData.cameraData.defaultOpaqueSortFlags);
-            drawSettings.overrideMaterial = m_OverrideWriteMaterial;
+            drawSettings.overrideMaterial = new Material(Shader.Find("Custom/VFX/WriteDepth/S_WriteDepth"));
 
             DrawingSettings occluderSettings = drawSettings;
-            occluderSettings.overrideMaterial = m_OverrideOccludeMaterial;
+            occluderSettings.overrideMaterial = new Material(Shader.Find("Custom/VFX/S_WriteOcclude/S_WriteOcclude"));
 
             context.DrawRenderers(renderingData.cullResults, ref drawSettings, ref m_FilteringSettings, ref m_RenderStateBlock);
             context.DrawRenderers(renderingData.cullResults, ref occluderSettings, ref m_OccluderSettings, ref m_RenderStateBlock);
