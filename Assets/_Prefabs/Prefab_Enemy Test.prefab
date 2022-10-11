@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  meshRenderer: {fileID: 0}
+  meshRenderer: {fileID: 397459145177914186}
   damageMaterial: {fileID: 2100000, guid: a3b9ce6044b3db94c9bb4c413978af25, type: 2}
   damageFlashMsec: 180
 --- !u!65 &1960759084882272101
@@ -91,6 +91,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ab5099ccbc321944b84aed7524a28c9,
         type: 3}
@@ -142,23 +157,129 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8172221987830653547, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5392668703035024452, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -2250538874923682974, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -1578373571446707184, guid: 2ab5099ccbc321944b84aed7524a28c9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 524f295a70a3beb4c9fcbe457e466a29, type: 2}
+    - target: {fileID: -1557807336605761806, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1544227324009165703, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 47171692695118391, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 403839568279996107, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 646944517283404886, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 741808593568725213, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2ab5099ccbc321944b84aed7524a28c9,
         type: 3}
       propertyPath: m_Name
       value: DM_Enemy_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 951011102456138778, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996951977015578152, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675141955055114818, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150117545997217164, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 2ab5099ccbc321944b84aed7524a28c9,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 66ce66dd79759a94ebea714fbd8b6f2d, type: 2}
+    - target: {fileID: 5913602780170592511, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255318366049573429, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820065657719086458, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043606470003712094, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452133395857086010, guid: 2ab5099ccbc321944b84aed7524a28c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ab5099ccbc321944b84aed7524a28c9, type: 3}
+--- !u!137 &397459145177914186 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1578373571446707184, guid: 2ab5099ccbc321944b84aed7524a28c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8042429916333127514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7500404436154437809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ab5099ccbc321944b84aed7524a28c9,

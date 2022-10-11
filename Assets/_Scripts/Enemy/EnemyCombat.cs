@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyCombat : CombatUnit
 {
     [Header("General References")]
-    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private SkinnedMeshRenderer meshRenderer;
     [SerializeField] private Material damageMaterial;
     [SerializeField] private int damageFlashMsec;
 

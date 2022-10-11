@@ -19,6 +19,7 @@ public class PlayerCombat : CombatUnit
     [SerializeField] private int meleeCDMsec;
     [SerializeField] private int meleeAnimDmgBufferMsec;
     private bool meleeOnCD = false;
+    private bool meleeSecondAttackReady = false;
 
     [Header("Misc")]
     [SerializeField] private bool drawGizmos = false;
@@ -48,16 +49,24 @@ public class PlayerCombat : CombatUnit
     {
         if (meleeOnCD)
             return;
-
         meleeOnCD = true;
 
-        playerAnimator.Play("Anim_Slash", 1, 0.0f);
+        // Decide on animation
+        if (!meleeSecondAttackReady)
+            playerAnimator.Play("Anim_Slash", 0, 0.0f);
+        else
+            playerAnimator.Play("Anim_Slash_2", 0, 0.0f);
+
+        // Rotate player
         playerMovementScript.CharacterRotationOverride(attacksForwardSource.eulerAngles.y, meleeCDMsec);
 
+        // Attack damage
         await Task.Delay(meleeAnimDmgBufferMsec);
         MeleeApplyDamage(meleeDamage, meleeAttackCollider, enemyLayer);
 
+        // Attack couldown
         await Task.Delay(meleeCDMsec - meleeAnimDmgBufferMsec);
+        meleeSecondAttackReady = !meleeSecondAttackReady;
         meleeOnCD = false;
     }
 
