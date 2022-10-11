@@ -56,8 +56,8 @@ Material:
     - _QueueOffset: 0
     - _ShadowRemapPow: 2.58
     m_Colors:
-    - _Detail_B: {r: 0.6645679, g: 2.971928, b: 3.4363024, a: 0}
+    - _Detail_B: {r: 0.665671, g: 2.0971637, b: 3.4363022, a: 0}
     - _Detail_G: {r: 0, g: 0, b: 0, a: 0}
-    - _Detail_R: {r: 0.20274118, g: 0.6415094, b: 0.52810967, a: 0}
+    - _Detail_R: {r: 0.475, g: 0.6415094, b: 0.5281096, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
