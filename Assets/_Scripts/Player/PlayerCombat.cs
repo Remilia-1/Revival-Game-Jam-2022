@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerCombat : CombatUnit
 {
     [Header("General References")]
+    [SerializeField] private PlayerMovement playerMovementScript;
+    [Space]
     [SerializeField] private Transform attacksForwardSource;
     [SerializeField] private Transform attackOrigin;
     [SerializeField] private Animator playerAnimator;
@@ -48,11 +50,14 @@ public class PlayerCombat : CombatUnit
 
         meleeOnCD = true;
 
+        playerMovementScript.CharacterRotationOverride(attacksForwardSource.eulerAngles.y);
         playerAnimator.Play("Anim_Slash", 1, 0.0f);
         MeleeApplyDamage(meleeDamage, meleeAttackCollider, enemyLayer);
 
         await Task.Delay(meleeCDMsec);
+
         meleeOnCD = false;
+        playerMovementScript.StopCharacterRotationOverride();
     }
 
     private void MeleeApplyDamage(uint damage, FlatConeCollider collider, LayerMask enemyLayer)

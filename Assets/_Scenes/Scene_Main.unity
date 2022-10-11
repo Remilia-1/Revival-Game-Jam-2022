@@ -976,6 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  playerMovementScript: {fileID: 929415965}
   attacksForwardSource: {fileID: 1693373009}
   attackOrigin: {fileID: 929415964}
   playerAnimator: {fileID: 884784496}
@@ -988,8 +989,7 @@ MonoBehaviour:
     rayLength: 3.6
     rayHeightOffset: 0.5
   meleeDamage: 10
-  meleeAnimToDmgBufferMsec: 0
-  meleeCDMsec: 350
+  meleeCDMsec: 400
   drawGizmos: 0
 --- !u!1 &1043314753
 GameObject:
@@ -1679,6 +1679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -15.586575
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927362687591842240, guid: 27ff8645279d8f346bc744ab4bcf4ad5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4945128040254815913, guid: 27ff8645279d8f346bc744ab4bcf4ad5,
         type: 3}

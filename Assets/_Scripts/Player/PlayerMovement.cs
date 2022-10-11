@@ -11,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkSpeed;
 
     [Header("Character Model Settings")]
-    [SerializeField] private float rotationOffset = -180f;
+    [SerializeField] private float rotationOffset = 135;
+    [SerializeField] private float overrideRotationOffset = 180f;
+
     Quaternion modelLookRotation;
+    bool playerRotationIsBeingOverriden;
 
     // Inputs
     MainInputProfile inputs;
@@ -35,7 +38,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
-        CharacterRotation();
+
+        if(!playerRotationIsBeingOverriden)
+            CharacterRotation();
     }
 
     private void Movement()
@@ -53,4 +58,17 @@ public class PlayerMovement : MonoBehaviour
 
         characterModel.transform.rotation = modelLookRotation;
     }
+
+    #region Character Rotation Override
+    public void CharacterRotationOverride(float amount)
+    {
+        playerRotationIsBeingOverriden = true;
+        characterModel.transform.rotation = Quaternion.AngleAxis(amount - overrideRotationOffset, Vector3.up);
+    }
+
+    public void StopCharacterRotationOverride()
+    {
+        playerRotationIsBeingOverriden = false;
+    }
+    #endregion
 }
