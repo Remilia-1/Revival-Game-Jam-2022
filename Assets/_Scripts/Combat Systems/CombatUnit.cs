@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CombatUnit : MonoBehaviour
 {
+    [Header("Combat Unit")]
     [SerializeField] protected uint maxHealth;
     protected uint currentHealth;
 
@@ -18,7 +19,14 @@ public class CombatUnit : MonoBehaviour
             currentHealth = maxHealth;
         else
             currentHealth = newHealth;
+
+        OnHealed();
     }
+
+    /// <summary>
+    /// Called when unit is healed
+    /// </summary>
+    public virtual void OnHealed() { }
 
     public void Damage(uint damageTaken)
     {
@@ -28,7 +36,14 @@ public class CombatUnit : MonoBehaviour
             KillSelf();
         else
             currentHealth = newHealth;
+
+        OnDamaged();
     }
+
+    /// <summary>
+    /// Called when unit is damaged
+    /// </summary>
+    public virtual void OnDamaged() { }
 
     private void KillSelf()
     {

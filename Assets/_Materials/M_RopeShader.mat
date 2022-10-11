@@ -37,7 +37,7 @@ Material:
     m_Floats:
     - Vector1_29EE7826: 0
     - Vector1_4BE78773: 0
-    - _GlowIntensity: 1
+    - _GlowIntensity: 1.6
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RopeOffset: 0.27
