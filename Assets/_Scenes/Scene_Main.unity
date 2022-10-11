@@ -813,10 +813,11 @@ MonoBehaviour:
   meleeAttackCollider:
     angle: 125
     rayCount: 20
-    rayLength: 3.3
+    rayLength: 3.25
     rayHeightOffset: 0.5
   meleeDamage: 20
-  meleeCDMsec: 420
+  meleeCDMsec: 385
+  meleeAnimDmgBufferMsec: 110
   drawGizmos: 0
 --- !u!1 &1043314753
 GameObject:

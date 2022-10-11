@@ -17,6 +17,7 @@ public class PlayerCombat : CombatUnit
     [Space]
     [SerializeField] private uint meleeDamage;
     [SerializeField] private int meleeCDMsec;
+    [SerializeField] private int meleeAnimDmgBufferMsec;
     private bool meleeOnCD = false;
 
     [Header("Misc")]
@@ -50,11 +51,13 @@ public class PlayerCombat : CombatUnit
 
         meleeOnCD = true;
 
-        MeleeApplyDamage(meleeDamage, meleeAttackCollider, enemyLayer);
         playerAnimator.Play("Anim_Slash", 1, 0.0f);
         playerMovementScript.CharacterRotationOverride(attacksForwardSource.eulerAngles.y, meleeCDMsec);
 
-        await Task.Delay(meleeCDMsec);
+        await Task.Delay(meleeAnimDmgBufferMsec);
+        MeleeApplyDamage(meleeDamage, meleeAttackCollider, enemyLayer);
+
+        await Task.Delay(meleeCDMsec - meleeAnimDmgBufferMsec);
         meleeOnCD = false;
     }
 
