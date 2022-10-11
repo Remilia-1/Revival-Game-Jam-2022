@@ -48,7 +48,7 @@ public class PlayerCombat : CombatUnit
 
         meleeOnCD = true;
 
-        playerAnimator.Play("Anim_Slash", 1);
+        playerAnimator.Play("Anim_Slash", 1, 0.0f);
         MeleeApplyDamage(meleeDamage, meleeAttackCollider, enemyLayer);
 
         await Task.Delay(meleeCDMsec);
