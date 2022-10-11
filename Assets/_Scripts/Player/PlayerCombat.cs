@@ -50,14 +50,12 @@ public class PlayerCombat : CombatUnit
 
         meleeOnCD = true;
 
-        playerMovementScript.CharacterRotationOverride(attacksForwardSource.eulerAngles.y);
-        playerAnimator.Play("Anim_Slash", 1, 0.0f);
         MeleeApplyDamage(meleeDamage, meleeAttackCollider, enemyLayer);
+        playerAnimator.Play("Anim_Slash", 1, 0.0f);
+        playerMovementScript.CharacterRotationOverride(attacksForwardSource.eulerAngles.y, meleeCDMsec);
 
         await Task.Delay(meleeCDMsec);
-
         meleeOnCD = false;
-        playerMovementScript.StopCharacterRotationOverride();
     }
 
     private void MeleeApplyDamage(uint damage, FlatConeCollider collider, LayerMask enemyLayer)
@@ -74,7 +72,6 @@ public class PlayerCombat : CombatUnit
         List<CombatUnit> unitsHit = new List<CombatUnit> { };
 
         for (int i = 0; i < collider.rayCount; i++)
-        {
             if(Physics.Linecast(rayStartPos + heightOffset, rayStartPos + Quaternion.Euler(0, startAngle + angleIncrements * i, 0) * (target + heightOffset), out RaycastHit hitInfo, enemyLayer))
                 if(hitInfo.collider.TryGetComponent(out CombatUnit combatUnit))
                 {
@@ -92,7 +89,6 @@ public class PlayerCombat : CombatUnit
                         combatUnit.Damage(damage);
                     }
                 }
-        }
     }
 
     private void AttackThrow()

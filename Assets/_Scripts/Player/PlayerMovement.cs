@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float overrideRotationOffset = 180f;
 
     Quaternion modelLookRotation;
-    bool playerRotationIsBeingOverriden;
+    bool rotationOverride;
 
     // Inputs
     MainInputProfile inputs;
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
 
-        if(!playerRotationIsBeingOverriden)
+        if(!rotationOverride)
             CharacterRotation();
     }
 
@@ -62,13 +63,18 @@ public class PlayerMovement : MonoBehaviour
     #region Character Rotation Override
     public void CharacterRotationOverride(float amount)
     {
-        playerRotationIsBeingOverriden = true;
+        rotationOverride = true;
         characterModel.transform.rotation = Quaternion.AngleAxis(amount - overrideRotationOffset, Vector3.up);
     }
 
-    public void StopCharacterRotationOverride()
+    public async void CharacterRotationOverride(float amount, int timeToResetOverrideMsec)
     {
-        playerRotationIsBeingOverriden = false;
+        rotationOverride = true;
+        characterModel.transform.rotation = Quaternion.AngleAxis(amount - overrideRotationOffset, Vector3.up);
+        await Task.Delay(timeToResetOverrideMsec);
+        rotationOverride = false;
     }
+
+    public void StopCharacterRotationOverride() { rotationOverride = false; }
     #endregion
 }
