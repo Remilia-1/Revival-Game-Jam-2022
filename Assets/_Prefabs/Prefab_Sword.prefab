@@ -413,8 +413,8 @@ MonoBehaviour:
   _attachTransformB: {fileID: 0}
   _ropeRenderer: {fileID: 2945695271408707571}
   _segmentCount: 25
-  _segmentLengthByDistance: 0.05
-  _segmentLengthMin: 0.1
+  _segmentLengthByDistance: 0.02
+  _segmentLengthMin: 0.04
   _segmentLengthMax: 0.41
   _initialGroundPlane: 0.1
   _connectBothPoints: 1
