@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -15,14 +14,12 @@ public class OutlinePostProcessPass : ScriptableRenderPass
 
     private List<ShaderTagId> ShaderTagIdList = new List<ShaderTagId>();
     private RenderTargetIdentifier m_CameraTargetId;
-    private Material m_OutlineMaterial;
 
 
 
-    public OutlinePostProcessPass (string[] shaderTags, RenderPassEvent renderPassEvent, RenderQueueType renderQueueType, int layerMask, Material mat)
+    public OutlinePostProcessPass (string[] shaderTags, RenderPassEvent renderPassEvent)
     {
         this.renderPassEvent = renderPassEvent;
-        this.m_OutlineMaterial = mat;
         m_Sampler = new ProfilingSampler("OutlinePass");
 
         if (shaderTags != null && shaderTags.Length > 0)
@@ -65,12 +62,13 @@ public class OutlinePostProcessPass : ScriptableRenderPass
             cmd.ClearRenderTarget(true, true, Color.clear);
             context.ExecuteCommandBuffer(cmd);
             cmd.Clear();
+            var targetMaterial = new Material(Shader.Find("Custom/PostProcessing/S_Outline"));
 
-            m_OutlineMaterial.SetFloat(m_SizeID, customEffect.Size.value);
-            m_OutlineMaterial.SetFloat(m_OffsetID, customEffect.Offset.value);
-            m_OutlineMaterial.SetColor(m_OutlineColorID, customEffect.Color.value);
+            targetMaterial.SetFloat(m_SizeID, customEffect.Size.value);
+            targetMaterial.SetFloat(m_OffsetID, customEffect.Offset.value);
+            targetMaterial.SetColor(m_OutlineColorID, customEffect.Color.value);
 
-            Blit(cmd, m_CameraTargetId, m_PostProcessTexture, m_OutlineMaterial);
+            Blit(cmd, m_CameraTargetId, m_PostProcessTexture, targetMaterial);
             Blit(cmd, m_PostProcessTexture, m_CameraTargetId);
         }
 

@@ -20,12 +20,8 @@ public class OutlineFeature : ScriptableRendererFeature
 
     public override void Create()
     {
-        var outlineWriteMaterial = new Material(Shader.Find("Custom/VFX/WriteDepth/S_WriteDepth"));
-        var outlineOccludeMaterial = new Material(Shader.Find("Custom/VFX/S_WriteOcclude/S_WriteOcclude"));
-        var targetMaterial = new Material(Shader.Find("Custom/PostProcessing/S_Outline"));
-
-        m_OutlineWritePass = new OutlineWritePass(m_CharactersMask, m_OccluderMask, outlineWriteMaterial, outlineOccludeMaterial, m_OutlineWritePassEvent);
-        m_PostProcessPass = new OutlinePostProcessPass(m_ShaderTags, m_OutlinePostProcessPassEvent, m_QueueType, m_CharactersMask, targetMaterial);
+        m_OutlineWritePass = new OutlineWritePass(m_CharactersMask, m_OccluderMask, m_OutlineWritePassEvent);
+        m_PostProcessPass = new OutlinePostProcessPass(m_ShaderTags, m_OutlinePostProcessPassEvent);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
