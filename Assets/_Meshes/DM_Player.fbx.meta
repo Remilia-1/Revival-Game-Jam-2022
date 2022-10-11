@@ -36,6 +36,15 @@ ModelImporter:
   - first:
       74: 1028931585900279474
     second: Anim_CapeRun
+  - first:
+      74: -7816728028436434149
+    second: armature_cape|armature_capeAction
+  - first:
+      74: 4654002454899972631
+    second: armature_cape|IK_Hand_RAction
+  - first:
+      74: 6636609063816266754
+    second: Anim_Slash
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -47,7 +56,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -137,6 +146,35 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Anim_Slash
+      takeName: armature_character|Anim_Run
+      internalID: 0
+      firstFrame: 63
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
