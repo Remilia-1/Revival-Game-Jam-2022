@@ -919,7 +919,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSource: {fileID: 1664572274}
   characterController: {fileID: 929415966}
+  characterModel: {fileID: 6106952274394730245}
   walkSpeed: 8
+  rotationOffset: 135
 --- !u!143 &929415966
 CharacterController:
   m_ObjectHideFlags: 0
