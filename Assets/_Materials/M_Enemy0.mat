@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Enemy
+  m_Name: M_Enemy0
   m_Shader: {fileID: -6465566751694194690, guid: 0b9a9d163e43f4f478d70bdfd2f4034f,
     type: 3}
   m_ValidKeywords: []
@@ -54,10 +54,10 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ShadowRemapPow: 1.55
+    - _ShadowRemapPow: 1.35
     m_Colors:
-    - _Detail_B: {r: 3.9533494, g: 1.7386458, b: 0, a: 0}
-    - _Detail_G: {r: 0, g: 0, b: 0, a: 0}
+    - _Detail_B: {r: 7.9066987, g: 1.9456275, b: 0, a: 0}
+    - _Detail_G: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
     - _Detail_R: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

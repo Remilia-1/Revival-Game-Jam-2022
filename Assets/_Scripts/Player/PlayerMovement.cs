@@ -60,13 +60,6 @@ public class PlayerMovement : MonoBehaviour
         characterModel.transform.rotation = modelLookRotation;
     }
 
-    #region Character Rotation Override
-    public void CharacterRotationOverride(float amount)
-    {
-        rotationOverride = true;
-        characterModel.transform.rotation = Quaternion.AngleAxis(amount - overrideRotationOffset, Vector3.up);
-    }
-
     public async void CharacterRotationOverride(float amount, int timeToResetOverrideMsec)
     {
         rotationOverride = true;
@@ -74,7 +67,4 @@ public class PlayerMovement : MonoBehaviour
         await Task.Delay(timeToResetOverrideMsec);
         rotationOverride = false;
     }
-
-    public void StopCharacterRotationOverride() { rotationOverride = false; }
-    #endregion
 }
