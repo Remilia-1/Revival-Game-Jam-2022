@@ -18,12 +18,7 @@ MonoBehaviour:
     m_Bits: 192
   m_OccluderMask:
     serializedVersion: 2
-    m_Bits: 256
-  m_TargetMaterial: {fileID: 2100000, guid: 31e61ed4e9b0c55449928e219d96cff7, type: 2}
-  m_OutlineWriteMaterial: {fileID: 2100000, guid: 2d437f7a3023152438d73c5276c783bf,
-    type: 2}
-  m_OutlineOccludeMaterial: {fileID: 2100000, guid: 16626da7900a1cd4aae1f5b6b97a9457,
-    type: 2}
+    m_Bits: 768
   m_OutlineWritePassEvent: 300
   m_OutlinePostProcessPassEvent: 550
   m_QueueType: 0

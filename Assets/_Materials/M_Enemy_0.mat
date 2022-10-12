@@ -58,6 +58,6 @@ Material:
     m_Colors:
     - _Detail_B: {r: 7.9066987, g: 1.9456275, b: 0, a: 0}
     - _Detail_G: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
-    - _Detail_R: {r: 1, g: 1, b: 1, a: 0}
+    - _Detail_R: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

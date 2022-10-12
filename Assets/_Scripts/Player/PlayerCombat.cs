@@ -18,8 +18,18 @@ public class PlayerCombat : CombatUnit
     [SerializeField] private uint meleeDamage;
     [SerializeField] private int meleeCDMsec;
     [SerializeField] private int meleeAnimDmgBufferMsec;
+    private bool meleeWeaponInHand = true;
     private bool meleeOnCD = false;
     private bool meleeSecondAttackReady = false;
+
+    [Header("Throw Attack")]
+    [SerializeField] private LayerMask specialWallLayer;
+    [SerializeField] private float throwLength;
+    [Space]
+    [SerializeField] private float throwDashSpeed;
+    [SerializeField] private int throwRecastCDMsec;
+    private bool canDashToSword = false;
+    Vector3 swordImpactPoint;
 
     [Header("Misc")]
     [SerializeField] private bool drawGizmos = false;
@@ -43,11 +53,14 @@ public class PlayerCombat : CombatUnit
         inputs.Enable();
 
         inputs.Main.AttackMelee.performed += ctx => MeleeAttack();
+
+        inputs.Main.AttackThrow.performed += ctx => ThrowAttack();
+        inputs.Main.AttackThrow.performed += ctx => ThrowRecast();
     }
 
     private async void MeleeAttack()
     {
-        if (meleeOnCD)
+        if (meleeOnCD || !meleeWeaponInHand)
             return;
         meleeOnCD = true;
 
@@ -103,9 +116,40 @@ public class PlayerCombat : CombatUnit
                 }
     }
 
-    private void AttackThrow()
+    private async void ThrowAttack()
     {
-        // Something fun;
+        if (!meleeWeaponInHand)
+            return;
+
+        Vector3 heightOffset = Vector3.up * meleeAttackCollider.rayHeightOffset;
+        Vector3 rayStartPos = attackOrigin.position;
+
+        if (!Physics.Linecast(rayStartPos + heightOffset, rayStartPos + attacksForwardSource.forward * throwLength + heightOffset, out RaycastHit hit, specialWallLayer))
+            return;
+
+        // Save impact location
+        swordImpactPoint = hit.point;
+
+        // Disable melee attack
+        meleeWeaponInHand = false;
+
+        await Task.Delay(throwRecastCDMsec);
+        canDashToSword = true;
+    }
+
+    private void ThrowRecast()
+    {
+        if (meleeWeaponInHand || !canDashToSword)
+            return;
+
+        // Move the player
+        StartCoroutine(playerMovementScript.MoveCharacterToPosition(ThrowFinish, swordImpactPoint, throwDashSpeed));
+    }
+
+    private void ThrowFinish()
+    {
+        meleeWeaponInHand = true;
+        canDashToSword = false;
     }
 
     private void OnDrawGizmos()
@@ -127,5 +171,9 @@ public class PlayerCombat : CombatUnit
         {
             Gizmos.DrawLine(rayStartPos + heightOffset, rayStartPos + Quaternion.Euler(0, startAngle + angleIncrements * i, 0) * (target + heightOffset));
         }
+
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawLine(rayStartPos + heightOffset, rayStartPos + attacksForwardSource.forward * throwLength + heightOffset);
     }
 }

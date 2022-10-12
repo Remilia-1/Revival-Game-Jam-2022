@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - IndicatorHiPlane
   - Water
   - UI
   - Player
   - Enemy
   - SolidGeometry
-  - Indicator Hit Plane
+  - SpecialWalls
   - 
   - 
   - 
