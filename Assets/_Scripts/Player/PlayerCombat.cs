@@ -143,7 +143,7 @@ public class PlayerCombat : CombatUnit
             return;
 
         // Move the player
-        StartCoroutine(playerMovementScript.MoveCharacterToPosition(ThrowFinish, swordImpactPoint, throwDashSpeed));
+        playerMovementScript.MoveCharacterToPosition(ThrowFinish, swordImpactPoint, throwDashSpeed);
     }
 
     private void ThrowFinish()

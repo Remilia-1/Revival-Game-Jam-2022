@@ -83,7 +83,13 @@ public class PlayerMovement : MonoBehaviour
         rotationOverride = false;
     }
 
-    public IEnumerator MoveCharacterToPosition(System.Action callback, Vector3 target, float speed)
+    public void MoveCharacterToPosition(System.Action callback, Vector3 target, float speed)
+    {
+        StopAllCoroutines();
+        StartCoroutine(MoveCharacterToPositionRoutine(callback, target, speed));
+    }
+
+    private IEnumerator MoveCharacterToPositionRoutine(System.Action callback, Vector3 target, float speed)
     {
         movementDisabled = true;
 
