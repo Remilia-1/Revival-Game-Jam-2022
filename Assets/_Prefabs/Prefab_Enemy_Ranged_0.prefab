@@ -5487,7 +5487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8138465917571175895}
-  - component: {fileID: 6169589251716971774}
+  - component: {fileID: 8568747860846840813}
   - component: {fileID: 7600090020356641707}
   - component: {fileID: 3382543438641009739}
   m_Layer: 7
@@ -5513,7 +5513,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6169589251716971774
+--- !u!114 &8568747860846840813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5522,10 +5522,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8915564913813114733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde4ddecd058d19499b189a398cb5d0f, type: 3}
+  m_Script: {fileID: 11500000, guid: e19eb75192e29d8468d5529d7fb0ef47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 60
   meshRenderer: {fileID: 3955265812087818586}
   damageMaterial: {fileID: 2100000, guid: 592dc83b7b79fcf48b9e63199aeac1a8, type: 2}
   damageFlashMsec: 200

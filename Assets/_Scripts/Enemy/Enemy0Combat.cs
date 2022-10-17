@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class EnemyCombat : CombatUnit
+public class Enemy0Combat : CombatUnit
 {
     [Header("General References")]
     [SerializeField] private SkinnedMeshRenderer meshRenderer;
