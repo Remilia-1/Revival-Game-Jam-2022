@@ -30,6 +30,9 @@ public class CombatUnit : MonoBehaviour
 
     public void Damage(uint damageTaken)
     {
+        if(damageTaken > currentHealth)
+            damageTaken = currentHealth;
+
         uint newHealth = currentHealth - damageTaken;
 
         if (newHealth <= 0)
