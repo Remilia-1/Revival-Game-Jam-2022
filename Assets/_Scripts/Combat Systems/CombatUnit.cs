@@ -6,6 +6,9 @@ public class CombatUnit : MonoBehaviour
     [SerializeField] protected uint maxHealth;
     protected uint currentHealth;
 
+    public uint CurrentHealth => currentHealth;
+
+
     private void Awake()
     {
         currentHealth = maxHealth;

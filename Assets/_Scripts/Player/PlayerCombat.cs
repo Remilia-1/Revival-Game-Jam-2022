@@ -125,7 +125,7 @@ public class PlayerCombat : CombatUnit
                     if (!unitAlreadyHit)
                     {
                         unitsHit.Add(combatUnit);
-                        combatUnit.Damage(damage);
+                        DamageEnemy(combatUnit, damage);
                     }
                 }
     }
@@ -182,7 +182,7 @@ public class PlayerCombat : CombatUnit
 
         if (swordTarget != null && swordTarget.TryGetComponent(out CombatUnit enemy))
         {
-            enemy.Damage(rangedDamage);
+            DamageEnemy(enemy, rangedDamage);
         }
 
         swordTarget = null;
@@ -210,8 +210,28 @@ public class PlayerCombat : CombatUnit
 
         if (target.TryGetComponent(out CombatUnit enemy))
         {
-            enemy.Damage(rangedDamage);
+            DamageEnemy(enemy, rangedDamage);
         }
+    }
+
+    private void DamageEnemy(CombatUnit target, uint damage) 
+    {
+        if(target.CurrentHealth <= damage) 
+        {
+            swordTransform.SetParent(swordParent);
+            swordTransform.localRotation = swordOriginRotation;
+
+            meleeWeaponInHand = true;
+            canDashToSword = false;
+            swordTarget = null;
+
+            if(swordTarget != null) 
+            {
+                StartCoroutine(ThrowOrReturnSword(swordTransform, swordParent, swordOriginPosition, 0.15f));
+            }
+        }
+
+        target.Damage(damage);
     }
 
     private void OnDrawGizmos()
