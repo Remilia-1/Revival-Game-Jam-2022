@@ -141,6 +141,8 @@ public class PlayerCombat : CombatUnit
         if (!Physics.Linecast(rayStartPos + heightOffset, rayStartPos + attacksForwardSource.forward * throwLength + heightOffset, out RaycastHit hit, specialWallLayer))
             return;
 
+        playerAnimator.Play("Anim_Slash", 0, 0.0f);
+
         // Save impact location
         swordImpactPoint = hit.point;
 
@@ -148,13 +150,13 @@ public class PlayerCombat : CombatUnit
         {
             swordTarget = hit.collider.transform;
             var hitDirection = (hit.point - swordTransform.position).normalized;
-            var hitPoint = swordTarget.InverseTransformPoint(hit.point - hitDirection * 0.55f);
+            var hitOffset = swordTarget.InverseTransformPoint(hit.point - hitDirection * 0.55f);
             var hitRotation = Quaternion.LookRotation(hitDirection, Quaternion.Euler(0, 90, 0) * hitDirection);
 
             swordTransform.rotation = hitRotation;
 
             // temporary solution
-            StartCoroutine(ThrowOrReturnSword(swordTransform, swordTarget, hitPoint, 0.15f));
+            StartCoroutine(ThrowOrReturnSword(swordTransform, swordTarget, hitOffset, 0.15f));
         }
 
         // Disable melee attack
@@ -171,7 +173,7 @@ public class PlayerCombat : CombatUnit
             return;
 
         // Move the player
-        playerMovementScript.MoveCharacterToPosition(ThrowFinish, swordImpactPoint, throwDashSpeed);
+        playerMovementScript.MoveCharacterToPosition(ThrowFinish, swordTransform.position, throwDashSpeed);
     }
 
     private void ThrowFinish()
@@ -180,12 +182,13 @@ public class PlayerCombat : CombatUnit
         swordTransform.localPosition = swordOriginPosition;
         swordTransform.localRotation = swordOriginRotation;
 
+
         if (swordTarget != null && swordTarget.TryGetComponent(out CombatUnit enemy))
         {
+            swordTarget = null;
+
             DamageEnemy(enemy, rangedDamage);
         }
-
-        swordTarget = null;
 
         meleeWeaponInHand = true;
         canDashToSword = false;
@@ -218,16 +221,16 @@ public class PlayerCombat : CombatUnit
     {
         if(target.CurrentHealth <= damage) 
         {
-            swordTransform.SetParent(swordParent);
-            swordTransform.localRotation = swordOriginRotation;
-
-            meleeWeaponInHand = true;
-            canDashToSword = false;
-            swordTarget = null;
-
-            if(swordTarget != null) 
+            if (swordTarget != null)
             {
-                StartCoroutine(ThrowOrReturnSword(swordTransform, swordParent, swordOriginPosition, 0.15f));
+                swordTransform.SetParent(null);
+                swordTransform.localRotation = swordOriginRotation;
+
+                //meleeWeaponInHand = true;
+                //canDashToSword = false;
+                //swordTarget = null;
+
+                //StartCoroutine(ThrowOrReturnSword(swordTransform, swordParent, swordOriginPosition, 0.15f));
             }
         }
 

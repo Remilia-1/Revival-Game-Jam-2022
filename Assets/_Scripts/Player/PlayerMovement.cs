@@ -60,8 +60,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Gravity()
     {
-        currentGravity += gravity * Time.deltaTime;
-        characterController.Move(Vector3.up * currentGravity);
+        //currentGravity += gravity * Time.deltaTime; // why?
+        characterController.Move(Vector3.up * gravity * Time.deltaTime);
     }
 
     private void CharacterRotation()
