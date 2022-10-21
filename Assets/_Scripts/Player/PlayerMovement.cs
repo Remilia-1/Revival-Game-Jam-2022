@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkSpeed;
     private bool movementDisabled = false;
     [SerializeField] private float gravity = -9.81f;
-    private float currentGravity = 0f;
 
     [Header("Character Model Settings")]
     [SerializeField] private float rotationOffset = 135;

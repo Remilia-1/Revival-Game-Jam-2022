@@ -12,6 +12,12 @@ public class PlayerCombat : CombatUnit
     [SerializeField] private Transform attackOrigin;
     [SerializeField] private Animator playerAnimator;
 
+    [Header("Damage Feedback")]
+    [SerializeField] private SkinnedMeshRenderer meshRenderer;
+    [SerializeField] private Material normalMaterial;
+    [SerializeField] private Material damageMaterial;
+    [SerializeField] private int damageFlashMsec;
+
     [Header("Melee Attack")]
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private FlatConeCollider meleeAttackCollider;
@@ -182,7 +188,6 @@ public class PlayerCombat : CombatUnit
         swordTransform.localPosition = swordOriginPosition;
         swordTransform.localRotation = swordOriginRotation;
 
-
         if (swordTarget != null && swordTarget.TryGetComponent(out CombatUnit enemy))
         {
             swordTarget = null;
@@ -260,5 +265,22 @@ public class PlayerCombat : CombatUnit
         Gizmos.color = Color.yellow;
 
         Gizmos.DrawLine(rayStartPos + heightOffset, rayStartPos + attacksForwardSource.forward * throwLength + heightOffset);
+    }
+
+    public override async void OnDamaged()
+    {
+        if (meshRenderer.material == damageMaterial)
+            return;
+
+        meshRenderer.material = damageMaterial;
+
+        await Task.Delay(damageFlashMsec);
+
+        meshRenderer.material = normalMaterial;
+    }
+
+    protected override void KillSelf()
+    {
+        print("Player died");
     }
 }

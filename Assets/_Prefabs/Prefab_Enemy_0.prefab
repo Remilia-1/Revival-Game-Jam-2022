@@ -74,6 +74,8 @@ MonoBehaviour:
   meshRenderer: {fileID: 397459145177914186}
   damageMaterial: {fileID: 2100000, guid: 576354addf839ee46949cfe761c54c26, type: 2}
   damageFlashMsec: 200
+  damagePerSec: 20
+  attackRadius: 2.2
 --- !u!114 &5111244065685206189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 7500404436154437809}
-  moveSpeed: 2.5
+  moveSpeed: 2.2
 --- !u!136 &293361152463570606
 CapsuleCollider:
   m_ObjectHideFlags: 0

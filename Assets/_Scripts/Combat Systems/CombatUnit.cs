@@ -51,7 +51,7 @@ public class CombatUnit : MonoBehaviour
     /// </summary>
     public virtual void OnDamaged() { }
 
-    private void KillSelf()
+    protected virtual void KillSelf()
     {
         // Thats kinda problematic
         Destroy(this.gameObject);
