@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Player_Damaged
+  m_Name: M_Enemy_0_Damaged
   m_Shader: {fileID: -6465566751694194690, guid: 0b9a9d163e43f4f478d70bdfd2f4034f,
     type: 3}
   m_ValidKeywords: []
@@ -35,7 +35,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _ShadowGradient:
-        m_Texture: {fileID: 2800000, guid: c68330f4d5f400d489ffdbcccfef09d8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 146b29b2f87089446b2a03f24902dc0d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -54,10 +54,10 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ShadowRemapPow: 2.75
+    - _ShadowRemapPow: 1.35
     m_Colors:
-    - _Detail_B: {r: 2.9960785, g: 0.1882353, b: 0.15686275, a: 0}
-    - _Detail_G: {r: 0.20784314, g: 0.14117648, b: 0.14117648, a: 0}
-    - _Detail_R: {r: 1, g: 0.23529412, b: 0.23529412, a: 0}
+    - _Detail_B: {r: 4.5412054, g: 0.5935932, b: 0.5494858, a: 0}
+    - _Detail_G: {r: 0.20784314, g: 0.14008628, b: 0.14008628, a: 0}
+    - _Detail_R: {r: 1, g: 0.3915094, b: 0.3915094, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
