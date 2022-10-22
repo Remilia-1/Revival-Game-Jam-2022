@@ -108,6 +108,7 @@ public class EnemyMeleeAI : MonoBehaviour
 
             if(Vector3.Distance(target.position, transform.position) < attackRange)
             {
+                movementLogic.StopWalking();
                 StartCoroutine(OnAttacking());
                 break;
             }
@@ -117,6 +118,7 @@ public class EnemyMeleeAI : MonoBehaviour
 
         if(timer > chasingDuration)
         {
+            movementLogic.StopWalking();
             StartCoroutine(OnIdle());
         }
     }
