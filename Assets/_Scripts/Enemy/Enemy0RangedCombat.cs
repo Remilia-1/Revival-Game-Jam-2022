@@ -4,18 +4,23 @@ using UnityEngine;
 public class Enemy0RangedCombat : CombatUnit
 {
     [Header("General References")]
+    [SerializeField] private Animator animator;
     [SerializeField] private SkinnedMeshRenderer meshRenderer;
     [SerializeField] private Material damageMaterial;
     [SerializeField] private int damageFlashMsec;
 
-    void Start()
-    {
+    private int attackId = Animator.StringToHash("IsAttacking");
 
+
+
+    public void StartAttacking()
+    {
+        animator.SetBool(attackId, true);
     }
 
-    void Update()
+    public void StopAttacking()
     {
-
+        animator.SetBool(attackId, false);
     }
 
     public override async void OnDamaged()

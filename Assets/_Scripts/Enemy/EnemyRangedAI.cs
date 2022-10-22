@@ -1,34 +1,32 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMeleeAI : MonoBehaviour
+public class EnemyRangedAI : MonoBehaviour
 {
-    private enum MeleeAIState
+    private enum RangedAIState
     {
         Idle,
-        Chasing,
+        Moving,
         Attacking
     }
 
     [Header("General")]
-    [SerializeField] private MeleeAIState initialState;
+    [SerializeField] private RangedAIState initialState;
 
     [Header("Idle")]
-    [SerializeField] private Enemy0Combat combatLogic;
+    [SerializeField] private Enemy0RangedCombat combatLogic;
     [SerializeField] private float idleDuration;
 
-    [Header("Chasing")]
+    [Header("Moving")]
     [SerializeField] private EnemyMovement movementLogic;
-    [SerializeField] private float chasingDuration;
+    [SerializeField] private float movingDuration;
     [SerializeField] private float viewRange;
 
     [Header("Attacking")]
     [SerializeField] private float attackDuration;
-    [SerializeField] private float attackRange;
 
-    private MeleeAIState currentState;
+    private RangedAIState currentState;
 
     private Transform target;
 
@@ -45,20 +43,20 @@ public class EnemyMeleeAI : MonoBehaviour
 
         var player = FindObjectOfType<PlayerMovement>();
 
-        if(player != null)
+        if (player != null)
         {
             SetTarget(player.transform);
         }
 
         switch (currentState)
         {
-            case MeleeAIState.Idle:
+            case RangedAIState.Idle:
                 StartCoroutine(OnIdle());
                 break;
-            case MeleeAIState.Chasing:
-                StartCoroutine(OnChasing());
+            case RangedAIState.Moving:
+                StartCoroutine(OnMoving());
                 break;
-            case MeleeAIState.Attacking:
+            case RangedAIState.Attacking:
                 StartCoroutine(OnAttacking());
                 break;
             default:
@@ -70,7 +68,7 @@ public class EnemyMeleeAI : MonoBehaviour
     {
         yield return new WaitForSeconds(idleDuration);
 
-        while(true)
+        while (true)
         {
             if (target == null)
             {
@@ -81,14 +79,9 @@ public class EnemyMeleeAI : MonoBehaviour
 
             float distance = Vector3.Distance(target.position, transform.position);
 
-            if(distance < attackRange)
+            if (distance < viewRange)
             {
-                StartCoroutine(OnAttacking());
-                break;
-            }
-            else if (distance < viewRange)
-            {
-                StartCoroutine(OnChasing());
+                StartCoroutine(OnMoving());
                 break;
             }
 
@@ -96,31 +89,21 @@ public class EnemyMeleeAI : MonoBehaviour
         }
     }
 
-    private IEnumerator OnChasing()
+    private IEnumerator OnMoving()
     {
         float timer = 0.0f;
 
-        while(timer < chasingDuration && target != null)
+        while (timer < movingDuration && target != null)
         {
             timer += Time.deltaTime;
 
             movementLogic.MoveTo(target.position);
 
-            if(Vector3.Distance(target.position, transform.position) < attackRange)
-            {
-                movementLogic.StopWalking();
-                StartCoroutine(OnAttacking());
-                break;
-            }
-
             yield return null;
         }
 
-        if(timer > chasingDuration)
-        {
-            movementLogic.StopWalking();
-            StartCoroutine(OnIdle());
-        }
+        movementLogic.StopWalking();
+        StartCoroutine(OnAttacking());
     }
 
     private IEnumerator OnAttacking()

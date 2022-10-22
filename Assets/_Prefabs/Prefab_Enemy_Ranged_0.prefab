@@ -5487,7 +5487,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8138465917571175895}
+  - component: {fileID: 2917088337943654731}
   - component: {fileID: 8568747860846840813}
+  - component: {fileID: 699895160266863409}
   - component: {fileID: 7600090020356641707}
   - component: {fileID: 3382543438641009739}
   m_Layer: 7
@@ -5513,6 +5515,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2917088337943654731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8915564913813114733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b55a662e6781148a2b635cf502404c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialState: 0
+  combatLogic: {fileID: 8568747860846840813}
+  idleDuration: 2
+  movementLogic: {fileID: 699895160266863409}
+  movingDuration: 2
+  viewRange: 15
+  attackDuration: 2
 --- !u!114 &8568747860846840813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5526,9 +5547,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 60
+  animator: {fileID: 0}
   meshRenderer: {fileID: 3955265812087818586}
   damageMaterial: {fileID: 2100000, guid: 592dc83b7b79fcf48b9e63199aeac1a8, type: 2}
   damageFlashMsec: 200
+--- !u!114 &699895160266863409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8915564913813114733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfca81c2a80e4143b107377b4ab6b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 977568625549416667}
+  model: {fileID: 6589093534707303073}
+  moveSpeed: 3
 --- !u!136 &7600090020356641707
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5557,5 +5594,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0

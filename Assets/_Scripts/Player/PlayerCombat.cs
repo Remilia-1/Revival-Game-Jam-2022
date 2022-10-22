@@ -178,8 +178,11 @@ public class PlayerCombat : CombatUnit
         if (meleeWeaponInHand || !canDashToSword)
             return;
 
+        var targetPosition = swordTransform.position;
+        targetPosition.y = transform.position.y;
+
         // Move the player
-        playerMovementScript.MoveCharacterToPosition(ThrowFinish, swordTransform.position, throwDashSpeed);
+        playerMovementScript.MoveCharacterToPosition(ThrowFinish, targetPosition, throwDashSpeed);
     }
 
     private void ThrowFinish()
