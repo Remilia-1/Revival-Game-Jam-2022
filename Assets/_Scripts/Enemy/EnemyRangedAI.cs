@@ -20,8 +20,11 @@ public class EnemyRangedAI : MonoBehaviour
 
     [Header("Moving")]
     [SerializeField] private EnemyMovement movementLogic;
+    [SerializeField] private Transform model;
     [SerializeField] private float movingDuration;
     [SerializeField] private float viewRange;
+    [SerializeField] private float minDistToTarget, maxDistToTarget;
+    [SerializeField] private float maxAngleAroundTarget;
 
     [Header("Attacking")]
     [SerializeField] private float attackDuration;
@@ -93,16 +96,19 @@ public class EnemyRangedAI : MonoBehaviour
     {
         float timer = 0.0f;
 
-        while (timer < movingDuration && target != null)
+        var targetPosition = GetRandomPositionAroundTarget(target.position, maxAngleAroundTarget, minDistToTarget, maxDistToTarget);
+
+        while (timer < movingDuration && target != null && Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
             timer += Time.deltaTime;
 
-            movementLogic.MoveTo(target.position);
+            movementLogic.MoveTo(targetPosition);
 
             yield return null;
         }
 
         movementLogic.StopWalking();
+        model.LookAt(target, Vector3.up);
         StartCoroutine(OnAttacking());
     }
 
@@ -115,5 +121,23 @@ public class EnemyRangedAI : MonoBehaviour
         combatLogic.StopAttacking();
 
         StartCoroutine(OnIdle());
+    }
+
+    private Vector3 GetRandomPositionAroundTarget(Vector3 target, float maxAngle, float minDist, float maxDist)
+    {
+        var direction = (transform.position - target);
+        direction.y = 0;
+        direction.Normalize();
+
+        var angle = UnityEngine.Random.Range(-maxAngle, maxAngle);
+        var dist = UnityEngine.Random.Range(minDist, maxDist);
+
+        return (Quaternion.Euler(0, angle, 0) * direction * dist) + target;
+    }
+
+    private void OnValidate()
+    {
+        minDistToTarget = Mathf.Clamp(minDistToTarget, 0, float.MaxValue);
+        maxDistToTarget = Mathf.Clamp(maxDistToTarget, minDistToTarget, float.MaxValue);
     }
 }

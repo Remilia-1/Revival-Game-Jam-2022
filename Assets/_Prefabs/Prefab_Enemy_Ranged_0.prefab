@@ -5531,9 +5531,13 @@ MonoBehaviour:
   combatLogic: {fileID: 8568747860846840813}
   idleDuration: 2
   movementLogic: {fileID: 699895160266863409}
+  model: {fileID: 6589093534707303073}
   movingDuration: 2
   viewRange: 15
-  attackDuration: 2
+  minDistToTarget: 4
+  maxDistToTarget: 8
+  maxAngleAroundTarget: 35
+  attackDuration: 1.25
 --- !u!114 &8568747860846840813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5547,10 +5551,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 60
-  animator: {fileID: 0}
+  animator: {fileID: 977568625549416667}
   meshRenderer: {fileID: 3955265812087818586}
   damageMaterial: {fileID: 2100000, guid: 592dc83b7b79fcf48b9e63199aeac1a8, type: 2}
+  projectileShootOrigin: {fileID: 2107021205}
+  projectile: {fileID: 4852802816271298836, guid: 24d80028c91123b44afac82e6f7297f6,
+    type: 3}
   damageFlashMsec: 200
+  projectileShootDelay: 0.5833333
+  shootErrorAngle: 3
 --- !u!114 &699895160266863409
 MonoBehaviour:
   m_ObjectHideFlags: 0
