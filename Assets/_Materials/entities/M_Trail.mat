@@ -43,15 +43,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaMult: 1.22
-    - _AlphaPow: 3.31
-    - _NoiseMult: 5.16
-    - _NoisePow: 10
+    - _AlphaMult: 0.97
+    - _AlphaPow: 0.74
+    - _NoiseMult: 3.94
+    - _NoisePow: 1.14
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _NoiseOffset: {r: 1.06, g: 0.48, b: 0, a: 0}
-    - _NoiseTiling: {r: 1.2, g: 0.47, b: 0, a: 0}
+    - _NoiseOffset: {r: 0.28, g: 0, b: 0, a: 0}
+    - _NoiseTiling: {r: 0.65, g: 0.43, b: 0, a: 0}
     - _Tint: {r: 1.0763046, g: 3.8084624, b: 3.9533494, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7507117323818869342
