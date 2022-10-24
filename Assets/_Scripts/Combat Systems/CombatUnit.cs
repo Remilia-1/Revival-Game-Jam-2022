@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class CombatUnit : MonoBehaviour
 {
+    public event Action<CombatUnit> onDieEvent;
+
     [Header("Combat Unit")]
     [SerializeField] protected uint maxHealth;
     protected uint currentHealth;
@@ -53,6 +56,7 @@ public class CombatUnit : MonoBehaviour
 
     protected virtual void KillSelf()
     {
+        onDieEvent?.Invoke(this);
         // Thats kinda problematic
         Destroy(this.gameObject);
     }
